@@ -1,0 +1,22 @@
+{
+  "name": "awesomechat",
+  "version": "1.0.0",
+  "description": "Awesome Chat",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vanh1200/AwesomeChat.git"
+  },
+  "author": "Vanh1200",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vanh1200/AwesomeChat/issues"
+  },
+  "homepage": "https://github.com/Vanh1200/AwesomeChat#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
