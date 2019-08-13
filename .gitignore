@@ -62,3 +62,6 @@ typings/
 
 # config environment
 sh/env.sh
+
+#bower components
+src/public/bower_components
