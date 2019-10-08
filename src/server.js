@@ -7,7 +7,7 @@ import connectFlash from "connect-flash";
 import configSesion from "./config/session";
 import passport from "passport";
 
-// Init app
+// Init app 
 let app = express();
 
 // Connect to MongoDb
