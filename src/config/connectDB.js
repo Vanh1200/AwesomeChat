@@ -15,7 +15,8 @@ let connectDB = () => {
 
   return mongoose.connect(URI,
     {
-      useNewUrlParser: true
+      useNewUrlParser: true, 
+      useUnifiedTopology: true
     }).catch(error => console.log(error));
   ;
 };
