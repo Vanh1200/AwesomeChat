@@ -1,5 +1,6 @@
-import {validationResult} from "express-validator/check";
-import {auth} from "../services/index";
+import { validationResult } from "express-validator/check";
+import { auth } from "../services/index";
+import UserModel from "../models/userModel";
 
 let getLoginRegister = (req, res) => {
   return res.render("auth/master", {
@@ -12,7 +13,7 @@ let postRegister = async (req, res) => {
   let errorArr = [];
   let successArr = [];
   let validationErrors = validationResult(req);
-  if(!validationErrors.isEmpty()){
+  if (!validationErrors.isEmpty()) {
     let errors = Object.values(validationErrors.mapped());
     errors.forEach(item => {
       errorArr.push(item.msg);
@@ -30,8 +31,33 @@ let postRegister = async (req, res) => {
     errorArr.push(error);
     req.flash("errors", errorArr);
     return res.redirect("/login-register")
-  } 
+  }
 };
+
+let postLogin = async (req, res) => {
+  try {
+    let password = req.body.password;
+    let email = req.body.email;
+    let user = await UserModel.findByEmail(email);
+    console.log(user);
+    if (!user) {
+      return res.status(401).send({ success: false, msg: 'Authentication failed. User not found.' });
+    }
+    if (!user.local.isActive) {
+      return res.status(401).send({ success: false, msg: 'Authentication failed. User not active.' });
+    }
+
+    let checkPassword = await user.comparePassword(password);
+    if (!checkPassword) {
+      return res.status(401).send({ success: false, msg: 'Authentication failed. Password failed.' });
+    }
+    return res.status(200).send(user);
+
+  } catch (error) {
+    console.log(error);
+    return res.status(401).send({ success: false, msg: 'Authentication failed. Password failed.' });
+  }
+}
 
 let verifyAccount = async (req, res) => {
   let errorArr = [];
@@ -51,5 +77,6 @@ let verifyAccount = async (req, res) => {
 module.exports = {
   getLoginRegister: getLoginRegister,
   postRegister: postRegister,
-  verifyAccount: verifyAccount
+  verifyAccount: verifyAccount,
+  postLogin: postLogin
 };

@@ -5,6 +5,7 @@ import initRoutes from "./routes/web";
 import bodyParser from "body-parser";
 import connectFlash from "connect-flash";
 import configSesion from "./config/session";
+import passport from "passport";
 
 // Init app
 let app = express();
@@ -24,9 +25,13 @@ app.use(bodyParser.urlencoded({extended: true}));
 // Enable flash message
 app.use(connectFlash());
 
+// Config passport js
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Init routes
 initRoutes(app);
 
 app.listen(process.env.APP_PORT, process.env.APP_HOST, () => {
-  console.log(`Hello Vanh1200 I'm running at ${process.env.APP_HOST}:${process.env.APP_PORT}/`);
+  console.log(`Server listening at ${process.env.APP_HOST}:${process.env.APP_PORT}/`);
 });
