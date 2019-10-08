@@ -9,14 +9,19 @@ export const transErrors = {
   account_in_use: "Email này đã được sử dụng.",
   account_removed: "Tài khoản này đã bị gỡ khỏi hệ thống, nếu tin điều này là hiểu nhầm, vui lòng liên hệ lại với chúng tôi tại hòm thư awesomechat@gmail.com.",
   account_not_active: "Email này đã được đăng ký nhưng chưa active tìa khoản, vui lòng kiểm tra email của bạn.",
-  token_undefine: "Token không tồn tại"
+  token_undefine: "Token không tồn tại",
+  login_failed: "Tài khoản hoặc mật khẩu không chính xác",
+  server_error: "Có lỗi xảy ra, vui lòng liên hệ với bộ phận hỗ trợ của chúng tôi, xin cảm ơn"
 };
 
 export const transSuccess = {
   userCreated: (userEmail) => {
     return `Tài khoản <strong>${userEmail}</strong> đã được tạo, vui lòng kiểm tra email để kích hoạt.`
   },
-  account_actived: "Xác nhận thành công, giờ bạn có thể đăng nhập vào hệ thống"
+  account_actived: "Xác nhận thành công, giờ bạn có thể đăng nhập vào hệ thống",
+  loginSuccess: (username) => {
+    return `Xin chào ${username}`;
+  }
 };
 
 export const transMail = {
