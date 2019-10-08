@@ -12,13 +12,13 @@ let app = express();
 
 // Connect to MongoDb
 // ConnectDB();
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://moviedictionary:<password>@moviecluster-mspup.mongodb.net/admin?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-client.connect(err => {
-  const collection = client.db("movie_dictionary").collection("user");
-  // perform actions on the collection object
-  client.close();
+var MongoClient = require('mongodb').MongoClient;
+
+var uri = "mongodb+srv://moviedictionary:<password>@moviecluster-mspup.mongodb.net/admin?retryWrites=true&w=majority";
+MongoClient.connect(uri, function(err, client) {
+   const collection = client.db("moviedictionary").collection("user");
+   // perform actions on the collection object
+   client.close();
 });
 
 // Config session
