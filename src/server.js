@@ -11,13 +11,12 @@ import passport from "passport";
 let app = express();
 
 // Connect to MongoDb
-ConnectDB();
-
-// Config session
-// configSesion(app);
+// ConnectDB();
 const mongoose = require('mongoose');
  mongoose.connect('mongodb+srv://moviedictionary:moviedic12@moviecluster-mspup.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true});
 
+// Config session
+configSesion(app);
 
 // Config view engine
 configViewEngine(app);
