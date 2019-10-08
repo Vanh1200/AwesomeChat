@@ -18,7 +18,7 @@ var uri = "mongodb+srv://moviedictionary:<password>@moviecluster-mspup.mongodb.n
 MongoClient.connect(uri, function(err, client) {
   //  const collection = client.db("moviedictionary").collection("user");
    // perform actions on the collection object
-   client.close();
+  //  client.close();
 });
 
 // Config session
