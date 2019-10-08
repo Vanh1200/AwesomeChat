@@ -32,6 +32,6 @@ app.use(passport.session());
 // Init routes
 initRoutes(app);
 
-app.listen(process.env.APP_PORT, process.env.APP_HOST, () => {
-  console.log(`Server listening at ${process.env.APP_HOST}:${process.env.APP_PORT}/`);
+app.listen(process.env.PORT, () => {
+  console.log(`Server listening at ${process.env.PORT}/`);
 });
