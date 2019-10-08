@@ -1,5 +1,5 @@
 import express from "express";
-// import ConnectDB from "./config/connectDB";
+import ConnectDB from "./config/connectDB";
 import configViewEngine from "./config/viewEngine";
 import initRoutes from "./routes/web";
 import bodyParser from "body-parser";
@@ -11,15 +11,7 @@ import passport from "passport";
 let app = express();
 
 // Connect to MongoDb
-// ConnectDB();
-var MongoClient = require('mongodb').MongoClient;
-
-var uri = "mongodb+srv://moviedictionary:<password>@moviecluster-mspup.mongodb.net/admin?retryWrites=true&w=majority";
-MongoClient.connect(uri, function(err, client) {
-  //  const collection = client.db("moviedictionary").collection("user");
-   // perform actions on the collection object
-  //  client.close();
-});
+ConnectDB();
 
 // Config session
 configSesion(app);
