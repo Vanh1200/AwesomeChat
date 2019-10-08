@@ -14,7 +14,10 @@ let app = express();
 ConnectDB();
 
 // Config session
-configSesion(app);
+// configSesion(app);
+const mongoose = require('mongoose');
+ mongoose.connect('mongodb+srv://moviedictionary:moviedic12@moviecluster-mspup.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true});
+
 
 // Config view engine
 configViewEngine(app);
