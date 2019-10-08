@@ -1,5 +1,5 @@
 import express from "express";
-import ConnectDB from "./config/connectDB";
+// import ConnectDB from "./config/connectDB";
 import configViewEngine from "./config/viewEngine";
 import initRoutes from "./routes/web";
 import bodyParser from "body-parser";
@@ -14,7 +14,7 @@ let app = express();
 // ConnectDB();
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://moviedictionary:<password>@moviecluster-mspup.mongodb.net/admin?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
   const collection = client.db("movie_dictionary").collection("user");
   // perform actions on the collection object
