@@ -13,7 +13,11 @@ let connectDB = () => {
 
   let URI = `mongodb+srv://moviedictionary:<moviedic12>@moviecluster-mspup.mongodb.net/admin?retryWrites=true&w=majority`;
 
-  return mongoose.connect(URI, { useMongoClient: true });
+  return mongoose.connect(URI,
+    {
+      useNewUrlParser: true
+    }).catch(error => console.log(error));
+  ;
 };
 
 module.exports = connectDB;
