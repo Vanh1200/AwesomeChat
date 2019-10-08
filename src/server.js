@@ -13,7 +13,7 @@ let app = express();
 // Connect to MongoDb
 // ConnectDB();
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://moviedictionary:moviedic12@moviecluster-mspup.mongodb.net/admin?retryWrites=true&w=majority', {useNewUrlParser: true});
+mongoose.connect('mongodb+srv://temp_user:temp_password@moviecluster-mspup.mongodb.net/admin?retryWrites=true&w=majority', {useNewUrlParser: true});
 
 // Config session
 configSesion(app);
