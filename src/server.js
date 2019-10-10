@@ -23,6 +23,7 @@ configViewEngine(app);
 
 // Enable post data for request
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 // Enable flash message
 app.use(connectFlash());
