@@ -11,7 +11,7 @@ let connectDB = () => {
 
   // let URI = `${process.env.DB_CONNECTION}://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
 
-  let URI = "mongodb+srv://moviedictionary:moviedic12@moviecluster-mspup.mongodb.net/admin?retryWrites=true&w=majority";
+  let URI = "mongodb://movieadmin:movieadmin12@ds331558.mlab.com:31558/heroku_9pd987j2";
 
   return mongoose.connect(URI,
     {

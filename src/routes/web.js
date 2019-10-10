@@ -1,5 +1,5 @@
 import express from "express";
-import {home,auth} from "../controllers/index";
+import {home,auth,comment} from "../controllers/index";
 import {authValid} from "../validation/index";
 import initPassportLocal from "../controllers/passportController/local";
 import passport from "passport";
@@ -26,7 +26,9 @@ let initRoutes = (app) => {
   }))
 
   //API for clients
-  router.post("/api/login", auth.postLogin)
+  router.post("/api/login", auth.postLogin);
+  router.post("api/comment/")
+  router.get("api/comment/:trailerid", comment.getComments);
 
 
   app.use(function(req, res, next) {

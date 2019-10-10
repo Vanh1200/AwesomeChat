@@ -11,7 +11,9 @@ import passport from "passport";
 let app = express();
 
 // Connect to MongoDb
-ConnectDB();
+// ConnectDB();
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://movieadmin:movieadmin12@ds331558.mlab.com:31558/heroku_9pd987j2', {useNewUrlParser: true});
 
 // Config session
 configSesion(app);
@@ -21,6 +23,7 @@ configViewEngine(app);
 
 // Enable post data for request
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 // Enable flash message
 app.use(connectFlash());
