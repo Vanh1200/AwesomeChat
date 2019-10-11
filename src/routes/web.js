@@ -27,15 +27,10 @@ let initRoutes = (app) => {
 
   //API for clients
   router.post("/api/login", auth.postLogin);
-  router.post("api/comment/")
-  router.get("api/comment/:trailerid", comment.getComments);
-
-
-  app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-  });
+  // router.post("/api/register")
+  // router.post("api/comments/:commentId", comment.postComment);
+  // router.delete("api/comments/:commentId", comment.deleteComment);
+  // router.get("api/comments/:trailerid", comment.getComments);
   
   return app.use("/", router);
 };

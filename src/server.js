@@ -11,9 +11,9 @@ import passport from "passport";
 let app = express();
 
 // Connect to MongoDb
-// ConnectDB();
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://movieadmin:movieadmin12@ds331558.mlab.com:31558/heroku_9pd987j2', {useNewUrlParser: true});
+ConnectDB();
+// const mongoose = require('mongoose');
+// mongoose.connect('mongodb://movieadmin:movieadmin12@ds331558.mlab.com:31558/heroku_9pd987j2', {useNewUrlParser: true});
 
 // Config session
 configSesion(app);
@@ -22,7 +22,7 @@ configSesion(app);
 configViewEngine(app);
 
 // Enable post data for request
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Enable flash message
@@ -35,6 +35,6 @@ app.use(passport.session());
 // Init routes
 initRoutes(app);
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server listening at ${process.env.PORT}/`);
+app.listen(process.env.APP_PORT, process.env.APP_HOST, () => {
+  console.log(`Server listening at ${process.env.APP_HOST}:${process.env.APP_PORT}/`);
 });
