@@ -7,9 +7,16 @@ import connectFlash from "connect-flash";
 import configSesion from "./config/session";
 import passport from "passport";
 import configBaseResponse from "./base/baseResponse";
+import socketio from "socket.io";
+import http from "http";
+import initSockets from "./sockets/index";
 
 // Init app 
 let app = express();
+
+// Init server with socket.io & express app
+let server = http.createServer(app);
+let io = socketio(server);
 
 // Connect to MongoDb
 ConnectDB();
@@ -39,6 +46,9 @@ configBaseResponse();
 // Init routes
 initRoutes(app);
 
-app.listen(process.env.APP_PORT, process.env.APP_HOST, () => {
+// Init sockets
+initSockets(io);
+
+server.listen(process.env.APP_PORT, process.env.APP_HOST, () => {
   console.log(`Server listening at ${process.env.APP_HOST}:${process.env.APP_PORT}/`);
 });
