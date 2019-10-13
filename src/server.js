@@ -49,6 +49,6 @@ initRoutes(app);
 // Init sockets
 initSockets(io);
 
-server.listen(process.env.APP_PORT, process.env.APP_HOST, () => {
-  console.log(`Server listening at ${process.env.APP_HOST}:${process.env.APP_PORT}/`);
+server.listen(process.env.APP_PORT, () => {
+  console.log(`Server listening at port: ${process.env.APP_PORT}/`);
 });
