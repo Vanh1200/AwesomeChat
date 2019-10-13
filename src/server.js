@@ -6,6 +6,7 @@ import bodyParser from "body-parser";
 import connectFlash from "connect-flash";
 import configSesion from "./config/session";
 import passport from "passport";
+import configBaseResponse from "./base/baseResponse";
 
 // Init app 
 let app = express();
@@ -31,6 +32,9 @@ app.use(connectFlash());
 // Config passport js
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Inject custom function
+configBaseResponse();
 
 // Init routes
 initRoutes(app);

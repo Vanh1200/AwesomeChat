@@ -35,3 +35,10 @@ export const transMail = {
   },
   send_failed: "Có lỗi trong quá trình gửi email, vui lòng liên hệ lại với bộ phận hỗ trợ của chúng tôi."
 };
+
+export const transComment = {
+  comment_created: "Tạo comment thành công",
+  commnet_not_created: "Đã xảy ra lỗi khi thực hiện bình luận",
+  comments_get_failed: "Đã xảy ra lỗi trong quá trình lấy dữ liệu",
+  comments_get_success: "Lấy comments thành công"
+};

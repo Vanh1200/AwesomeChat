@@ -27,10 +27,10 @@ let initRoutes = (app) => {
 
   //API for clients
   router.post("/api/login", auth.postLogin);
-  // router.post("/api/register")
-  // router.post("api/comments/:commentId", comment.postComment);
-  // router.delete("api/comments/:commentId", comment.deleteComment);
-  // router.get("api/comments/:trailerid", comment.getComments);
+  router.post("/api/register", authValid.register, auth.postApiRegister);
+  router.post("/api/comments/:trailerId", comment.postComment);
+  // router.delete("/api/comments/:commentId", comment.deleteComment);
+  router.get("/api/comments/:trailerId", comment.getComments);
   
   return app.use("/", router);
 };

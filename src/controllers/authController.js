@@ -9,6 +9,7 @@ let getLoginRegister = (req, res) => {
   });
 };
 
+//register for web
 let postRegister = async (req, res) => {
   let errorArr = [];
   let successArr = [];
@@ -34,6 +35,27 @@ let postRegister = async (req, res) => {
   }
 };
 
+//register for api
+let postApiRegister = async (req, res) => {
+  let errorArr = [];
+  let validationErrors = validationResult(req);
+  if (!validationErrors.isEmpty()) {
+    let errors = Object.values(validationErrors.mapped());
+    errors.forEach(item => {
+      errorArr.push(item.msg);
+    });
+    return res.sendByForm(401, errorArr, null);
+  }
+
+  try {
+    let createUserSuccess = await auth.register(req.body.email, req.body.gender, req.body.password, req.protocol, req.get("host"));
+    return res.sendByForm(200, "Create account success", createUserSuccess);
+
+  } catch (error) {
+    return res.sendByForm(401, error, null);
+  }
+};
+
 let postLogin = async (req, res) => {
   try {
     let password = req.body.password;
@@ -41,21 +63,21 @@ let postLogin = async (req, res) => {
     let user = await UserModel.findByEmail(email);
     console.log(user);
     if (!user) {
-      return res.status(401).send({ success: false, msg: 'Authentication failed. User not found.' });
+      return res.sendByForm(401, "Authentication failed. User not found.", null);
     }
     if (!user.local.isActive) {
-      return res.status(401).send({ success: false, msg: 'Authentication failed. User not active.' });
+      return res.sendByForm(401, "Authentication failed. User not active.", null);
     }
 
     let checkPassword = await user.comparePassword(password);
     if (!checkPassword) {
-      return res.status(401).send({ success: false, msg: 'Authentication failed. Password failed.' });
+      return res.sendByForm(401, "Authentication failed. Password failed.", null);
     }
-    return res.status(200).send(user);
+    return res.sendByForm(200, "Login successfully", user);
 
   } catch (error) {
     console.log(error);
-    return res.status(401).send({ success: false, msg: 'Authentication failed. Password failed.' });
+    return res.sendByForm(401, "Authentication failed. Password failed.", null);
   }
 }
 
@@ -77,6 +99,7 @@ let verifyAccount = async (req, res) => {
 module.exports = {
   getLoginRegister: getLoginRegister,
   postRegister: postRegister,
+  postApiRegister: postApiRegister,
   verifyAccount: verifyAccount,
   postLogin: postLogin
 };
