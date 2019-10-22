@@ -19,9 +19,9 @@ let createComment = (trailerId, userId, userName, userAvatarUrl, content) => {
   });
 };
 
-let getComments = (trailerId, offset, limit) => {
+let getComments = (trailerId, page) => {
   return new Promise(async (resolve, reject) => {
-    let comments = await CommentModel.getCommentsByTrailerId(trailerId, offset, limit);
+    let comments = await CommentModel.getCommentsByTrailerId(trailerId, page);
     console.log(comments);
     if (!comments) {
       return reject(transComment.comments_get_failed);

@@ -22,14 +22,12 @@ let postComment = async (req, res) => {
 let getComments = async (req, res) => {
   try {
     let trailerId = req.params.trailerId;
-    let offset = req.query.offset;
-    let limit = req.query.limit;
+    let page = req.query.page;
     console.log(trailerId);
-    console.log(offset);
-    console.log(limit);
-    let comments = await comment.getComments(trailerId, parseInt(offset), parseInt(limit));
+    let comments = await comment.getComments(trailerId, parseInt(page));
     return res.sendByForm(200, "Get comments success", comments);
   } catch (error) {
+    console.log(error);
     return res.sendByForm(401, "Can not get comments", null);
   }
 }

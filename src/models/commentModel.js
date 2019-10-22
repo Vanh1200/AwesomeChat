@@ -23,13 +23,15 @@ CommentSchema.statics = {
   },
 
   /**
-   * get limited message by trailer id
+   * get message by trailer id 10 item per page
    * @param {string} trailerId 
-   * @param {number} limit 
-   * @param {number} offset
+   * @param {number} page 
    */
-  getCommentsByTrailerId(trailerId, offset, limit) {
-    return this.find({ "trailerId": trailerId}, null, {skip: offset, limit: limit});
+  getCommentsByTrailerId(trailerId, page) {
+    let offset = 0;
+    if(!page) page = 0;
+    else offset = page * 10;
+    return this.find({ "trailerId": trailerId}, null, {skip: offset, limit: 10});
   }
 };
 
