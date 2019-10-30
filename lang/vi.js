@@ -40,5 +40,6 @@ export const transComment = {
   comment_created: "Tạo comment thành công",
   commnet_not_created: "Đã xảy ra lỗi khi thực hiện bình luận",
   comments_get_failed: "Đã xảy ra lỗi trong quá trình lấy dữ liệu",
-  comments_get_success: "Lấy comments thành công"
+  comments_get_success: "Lấy comments thành công",
+  comments_not_found_user: "Đã xảy ra lỗi khi thực hiện bình luận"
 };

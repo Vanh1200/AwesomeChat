@@ -1,13 +1,18 @@
 import CommentModel from "./../models/commentModel";
 import {transComment} from "../../lang/vi";
+import UserModel from "./../models/userModel";
 
-let createComment = (trailerId, userId, userName, userAvatarUrl, content) => {
+let createComment = (trailerId, userId, content) => {
   return new Promise(async (resolve, reject) => {
+    
+    let user = await UserModel.findUserById(userId);
+    if (!user) {
+      return reject(transComment.comments_not_found_user);
+    }
+
     let commentItem = {
       trailerId: trailerId,
-      userId: userId,
-      userName: userName,
-      userAvatarUrl: userAvatarUrl,
+      user: user,
       content: content
     }
     let comment = await CommentModel.createNew(commentItem);
@@ -15,7 +20,7 @@ let createComment = (trailerId, userId, userName, userAvatarUrl, content) => {
     if(!comment) {
       return reject(transComment.comment_not_created);
     }
-    resolve(transComment.comment_created);
+    resolve(comment);
   });
 };
 
@@ -34,5 +39,3 @@ module.exports = {
   createComment: createComment,
   getComments: getComments
 };
-
-

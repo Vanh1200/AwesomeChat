@@ -4,10 +4,8 @@ let postComment = async (req, res) => {
   try {
     let trailerId = req.params.trailerId;
     let userId = req.body.userId;
-    let userName = req.body.userName;
-    let userAvatarUrl = req.body.userAvatarUrl;
     let content = req.body.content;
-    let commentCreated = await comment.createComment(trailerId, userId, userName, userAvatarUrl, content);
+    let commentCreated = await comment.createComment(trailerId, userId, content);
     if (commentCreated == null) {
       return res.sendByForm(401, "Can not create comment", null);
     }
