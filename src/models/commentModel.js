@@ -5,6 +5,7 @@ let Schema = mongoose.Schema;
 let CommentSchema = new Schema({
   trailerId: String,
   user: {
+    _id: mongoose.Types.ObjectId,
     username: String,
     gender: { type: String, default: "male" },
     phone: { type: Number, default: null },

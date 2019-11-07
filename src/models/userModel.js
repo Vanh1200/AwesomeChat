@@ -57,7 +57,7 @@ UserSchema.statics = {
 
   findUserById(id) {
     return this.findById(id).exec();
-  }
+  },
 
 };
 

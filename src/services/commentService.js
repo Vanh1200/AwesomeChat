@@ -15,6 +15,7 @@ let createComment = (trailerId, userId, content) => {
       user: user,
       content: content
     }
+    console.log(user);
     let comment = await CommentModel.createNew(commentItem);
     console.log(comment);
     if(!comment) {
