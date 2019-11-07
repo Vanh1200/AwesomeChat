@@ -65,3 +65,4 @@ sh/env.sh
 
 #bower components
 src/public/bower_components
+uploads
