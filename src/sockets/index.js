@@ -1,4 +1,5 @@
 import sendMessage from "./chat/sendMessage";
+import sendComment from "./comment/sendComment";
 
 /**
  * 
@@ -7,6 +8,7 @@ import sendMessage from "./chat/sendMessage";
 
 let initSockets = (io) => {
   sendMessage(io);
+  sendComment(io);
   // todo add more socket if ness
 }
 

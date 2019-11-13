@@ -1,5 +1,5 @@
 import express from 'express';
-import { home, auth, comment } from '../controllers/index';
+import { home, auth, comment, message, feed, user} from '../controllers/index';
 import { authValid } from '../validation/index';
 import initPassportLocal from '../controllers/passportController/local';
 import passport from 'passport';
@@ -36,12 +36,22 @@ let initRoutes = app => {
     authValid.register,
     auth.postApiRegister,
   );
+  router.get('/api/user/search/:userId', user.searchUser);
+
+  //comment
   router.post('/api/comments/:trailerId', comment.postComment);
   // router.delete("/api/comments/:commentId", comment.deleteComment);
   router.get('/api/comments/:trailerId', comment.getComments);
   //file
   router.post('/api/file', upload());
   router.get('/api/file/:filename', download);
+  //message
+  router.post('/api/messages/get', message.getMessages);
+  router.post('/api/messages/create', message.postMessage);
+  //feed
+  router.get('/api/posts/:userId', feed.getFeeds);
+  router.post('/api/posts/create/:userId', feed.postFeed);
+  router.get('/api/posts/profile/:userId', feed.getFeedsProfile);
 
   return app.use('/', router);
 };

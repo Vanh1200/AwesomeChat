@@ -59,6 +59,13 @@ UserSchema.statics = {
     return this.findById(id).exec();
   },
 
+  findUserByKeyword(keyword, page) {
+    let offset = 0;
+    if(!page) page = 0;
+    else offset = page * 20;
+    return this.find({ "username": new RegExp(keyword)}, null, {skip: offset, limit: 20});
+  }
+
 };
 
 UserSchema.methods = {
